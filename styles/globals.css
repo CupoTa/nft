@@ -14,3 +14,10 @@ a {
 * {
   box-sizing: border-box;
 }
+.outline {
+    outline: 1px solid red;
+}
+
+.underline {
+    text-decoration: underline;
+}
