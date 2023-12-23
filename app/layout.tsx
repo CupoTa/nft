@@ -8,8 +8,14 @@ import Head from 'next/head';
 import { Providers } from './providers';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { usePathname } from 'next/navigation'
-import Link from 'next/link'
 import { useAccount } from 'wagmi';
+import { Link } from '@chakra-ui/next-js'
+import {
+    Box,
+    Container,
+    Flex,
+    Spacer
+} from "@chakra-ui/react";
 
 
 function RootLayout({ children }: { children: React.ReactNode }) {
@@ -21,33 +27,36 @@ function RootLayout({ children }: { children: React.ReactNode }) {
             <head>
                 <title>Wish Power NFT | Scroll Maiinet domain.scroll</title>
                 <link rel="icon" href="/favicon.ico" sizes="any" />
-                <meta name="description" content="Wish Power NFT marketplace? mint new collection and nft to mainnet Scroll"/>
-                <meta name="keywords" content="airdrop scroll, nft scroll, mainnet, drop, conracts scroll, marketpalace scroll"/>
+                <meta name="description" content="Wish Power NFT marketplace? mint new collection and nft to mainnet Scroll" />
+                <meta name="keywords" content="airdrop scroll, nft scroll, mainnet, drop, conracts scroll, marketpalace scroll" />
             </head>
             <body className='outline'>
                 <Providers>
+                <Box bg='gray.100' w='100%' p={4} color='teal'>
                     <Header />
-                    <div className='container-fluid d-flex '>
-                        <main className='w-100'>
-                            {children}
-                        </main>
-                        <Connected>
-                            <div className='ms-auto order-2'>
-                                <ul className='nav nav-pills nav-fill'>
-                                    <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Личный кабинет
-                                        </a>
-                                        <ul className="dropdown-menu">
-                                            <li><Link className={`dropdown-item ${pathname === '/user' ? 'active' : ''}`} href="/user">Profile</Link></li>
-                                            <li><Link className={`dropdown-item ${pathname === '/user/collections' ? 'active' : ''}`} href="/user/collections">Collections</Link></li>
-                                            <li><Link className={`dropdown-item ${pathname === '/user/create' ? 'active' : ''}`} href="/user/create">Create</Link></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </Connected>
-                    </div>
+                    
+                        <Flex display={'flex'} justifyItems={"beetwen"} gap='2'>
+                            <main className='w-100'>
+                                {children}
+                            </main>
+                            <Connected>
+                                <Flex className='ms-auto order-2' gap='2'>
+                                    <ul className='nav nav-pills nav-fill'>
+                                        <li className="nav-item dropdown">
+                                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Личный кабинет
+                                            </a>
+                                            <ul className="dropdown-menu">
+                                                <li><Link className={`dropdown-item ${pathname === '/user' ? 'active' : ''}`} href="/user">Profile</Link></li>
+                                                <li><Link className={`dropdown-item ${pathname === '/user/collections' ? 'active' : ''}`} href="/user/collections">Collections</Link></li>
+                                                <li><Link className={`dropdown-item ${pathname === '/user/create' ? 'active' : ''}`} href="/user/create">Create</Link></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </Flex>
+                            </Connected>
+                        </Flex>
+                    </Box>
                     <Footer />
                     <BootstrapClient />
                 </Providers>

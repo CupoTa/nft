@@ -9,6 +9,7 @@ import { NFTList } from './NFTList'
 import { useUserCollections } from '../hooks/useUserCollections'
 import Link from 'next/link'
 import SelectCollections from './SelectCollections'
+import { FileUpdate } from './FileUpdate'
 
 
 export function Collections() {
@@ -18,6 +19,7 @@ export function Collections() {
 
     return (
         <div>
+            <FileUpdate/>
             {data ?
                 <SelectCollections value={value} setValue={setValue} />
                 :

@@ -3,7 +3,6 @@
 import { useState, FC, useEffect } from 'react'
 import { BaseError } from 'viem'
 import { useContractWrite, useWaitForTransaction, usePrepareContractWrite, type Address, useAccount, useContractRead } from 'wagmi'
-import FormData from 'form-data'
 import fetch from 'node-fetch'
 
 import { stringify } from '../utils/stringify'
@@ -106,7 +105,7 @@ export const MintNFTCollection: FC<Props> = ({ collectionAddress }) => {
                 headers: {
                     'Authorization': `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`
                 },
-                body: data
+                body: data as any
             })
             const resData = await res.json()
             // if (!resData.ok) throw new Error(await res.text())
