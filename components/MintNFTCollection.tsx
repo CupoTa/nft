@@ -3,7 +3,6 @@
 import { useState, FC, useEffect } from 'react'
 import { BaseError } from 'viem'
 import { useContractWrite, useWaitForTransaction, usePrepareContractWrite, type Address, useAccount, useContractRead } from 'wagmi'
-import fetch from 'node-fetch'
 
 import { stringify } from '../utils/stringify'
 import { useDebounce } from '../hooks/useDebounce'

@@ -2,7 +2,6 @@
 
 import { useRef, useState } from 'react'
 import { useFormik } from "formik"
-import fetch from 'node-fetch'
 import {
     AspectRatio,
     Box,
