@@ -8,6 +8,7 @@ import { stringify } from '../utils/stringify'
 import { useDebounce } from '../hooks/useDebounce'
 import SelectCollections from './SelectCollections'
 import { abi } from '../utils/nft_abi'
+import axios from 'axios'
 
 type Props = {
     collectionAddress: Address
@@ -60,15 +61,15 @@ export const MintNFTCollection: FC<Props> = ({ collectionAddress }) => {
                 },
             });
 
-            const res = await fetch("https://api.pinata.cloud/pinning/pinJSONToIPFS", {
+            const res = await axios("https://api.pinata.cloud/pinning/pinJSONToIPFS", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`
                 },
-                body: data
+                data: data
             })
-            const resData = await res.json()
+            const resData = await res.data
             console.log("Metadata uploaded, CID:", resData?.IpfsHash)
             setTokenUri(resData?.IpfsHash)
         } catch (error) {

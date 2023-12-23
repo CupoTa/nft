@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { useFormik } from "formik"
+import axios from "axios";
 import {
     AspectRatio,
     Box,
@@ -46,14 +47,15 @@ export function FileUpdate() {
             })
             formData.append('pinataMetadata', pinData)
 
-            const res = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
+            const res = await axios("https://api.pinata.cloud/pinning/pinFileToIPFS", {
                 method: 'POST',
+                data: formData as any,
                 headers: {
                     'Authorization': `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`
                 },
-                body: formData as any
+                
             })
-            const resData = await res.json()
+            const resData = await res.data
             // if (!resData.ok) throw new Error(await res.text())
             console.log("File uploaded, CID:", resData.IpfsHash)
             setImageCID(resData.IpfsHash)
